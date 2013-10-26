@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Introduction to Shell Programming - GLUG BMSIT</title>
+
+        <meta name="description" content="Introduction to Shell Programming ">
+        <meta name="author" content="Nitesh A Jain">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <link rel="stylesheet" href="css/custom.css">
+
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+         document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Begin content -->
+
+            <div class="slides">
+
+                <section>
+                    <h1>Shell Programming</h1>
+                    <p>
+                        <br>
+                    </p>
+
+                    <p>Nitesh A Jain</p>
+                    <p>about.me/niteshajain
+                </section>
+
+                <section>
+                    <h2>Today we shall learn:</h2>
+                    <ul>
+                        <li class="fragment">Shell Commands</li>
+                        <li class="fragment">How to write a shell script</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>The Shell </h2>
+                    </section>
+
+                    <section>
+                        <h3>What is a SHELL?</h3>
+                        
+                        <ul>
+                            <li class="fragment"> Shell is a software that provides an interface for users of an operating system to access the services of a kernel</li>
+                            <li class="fragment">In the old days, it was the only user interface available on a Unix computer</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                      
+			  <h3>What's an xterm, gnome-terminal, konsole, et al?</h3>
+			  <ul>
+                                <li class="fragment">These are called "terminal emulators" </li>
+                                <li class="fragment">They are programs that put a window up and let you interact with the shell</li>
+                                <li class="fragment">Most Linux distributions supply several, such as: xterm, rxvt, konsole, kvt, gnome-terminal, nxterm, and eterm</li>
+			  </ul>
+                    </section>
+
+                    <section>
+                        <h2>Types of Shell</h2>
+                        <br><br>
+                            <ul >
+                                <li class="fragment">Bourne Shell - sh</li>
+                                <li class="fragment">C Shell - csh</li>
+                                <li class="fragment">Korn Shell - ksh </li>
+                                <li class="fragment">Bourne Again SHell - bash </li>
+                                <li class="fragment">Others like zsh, tcsh, et al </li>
+
+                            </ul>
+                    </section>
+
+                </section>
+
+                <section>
+
+                    <section>
+                        <h2>So let us learn some Shell Commands</h2>
+                    </section>
+
+                    <section>
+                        <h2>Navigation</h2>
+                        <ul>
+                                <li class="fragment">pwd</li>
+                                <li class="fragment">ls</li>
+                                <li class="fragment">cd</li>
+                                <li class="fragment">Shortcuts
+					<ul>
+		                                <li class="fragment">cd ~</li>
+		                                <li class="fragment">cd -</li>
+					</ul>
+				</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>The "ls" command</h2>
+                        <ul>
+                                <li class="fragment"><strong>ls </strong> : List the files in the working directory</li>
+                                <li class="fragment"><strong>ls /bin </strong> : List the files in the /bin directory </li>
+                                <li class="fragment"><strong>ls -l</strong> : List the files in the working directory in long format</li>
+					
+                        </ul>
+                    </section>
+                    <section>
+			<h2>Let us look at the output of ls -l</h2>
+			<pre><code>
+-rw-------  1   nitesh  nitesh    576   Apr 17  2013  weather.txt
+drwxr-xr-x  6   nitesh  nitesh    1024  Oct  9  2013  web_page
+----------      ------  ------- -------- ------------ -------------
+    |             |        |         |         |             |
+    |             |        |         |         |         File Name
+    |             |        |         |         |
+    |             |        |         |         +---  Modification Time
+    |             |        |         |
+    |             |        |         +-------------   Size (in bytes)
+    |             |        |
+    |             |        +-----------------------        Group
+    |             |
+    |             +--------------------------------        Owner
+    |
+    +----------------------------------------------   File Permissions	
+			</code></pre>
+		    </section>
+		    <section>
+			<h2>Manipulating Files</h2>
+				<ul>
+				<li class="fragment">cp - copy files and directories </li>
+				<li class="fragment">mv - move or rename files and directories</li>
+				<li class="fragment">rm - remove files and directories</li>
+				<li class="fragment">mkdir - create directories</li>
+				<li class="fragment">touch - creates a empty file </li> 
+				<ul>
+		    </section>
+		    <section>
+			<h2>I/O redirection</h2>
+			 	<ul>
+					<li class="fragment">Standard Output
+						<ul>
+							<li class="fragment"><code>ls -l &gt;  file_list.txt</code></li>
+							<li class="fragment"><code>ls -l &gt;&gt; file_list.txt</code></li>
+						</ul>
+					</li>
+					<li class="fragment">Standard Input
+						<ul>
+							<li class="fragment"><code>sort &lt; file_list</code></li>
+						</ul>
+					</li>
+					<li class="fragment">Pipes
+						<ul>
+							<li class="fragment">ls -l | less</li>
+						</ul>
+					</li>
+
+				</ul>
+		    </section>
+
+                </section>
+		<section>
+			<section>
+				<h2> The 'Man' command</h2>
+			</section>
+			<section>
+				<h2>Man Page</h2>
+				<ul>
+					<li class="fragment">A man page (short for manual page) is a form of software documentation usually found on a Unix or Unix-like operating system</li>
+					<li class="fragment">Usage : <br><pre><code>$man command_name</code></pre></li>
+					<li class="fragment">The -k option allows you to search a word in the man pages<br><pre><code>$man -k sequence</code></pre></li>
+				</ul>
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h2>Shell Scripting</h2>
+			</section>
+			<section>
+				<h2>So what are scripts?</h2>
+				Scripts are collections of commands that are stored in a file. The shell can read this file and act on the commands as if they were typed at the keyboard. In addition to the things you have learned so far, the shell also provides a variety of useful programming features to make your scripts truly powerful.
+			</section>
+			<section>
+				<h2>Why write scripts?</h2>
+					Scripts are generally written 
+					<br>
+					   <ul>
+						<li class="fragment">To take backup of servers </li>
+						<li class="fragment">System administrators use it for automating many aspects of computer maintenance, user account creation, et al</li>
+						<br>
+						<li class="fragment"><strong>AUTOMATE, AUTOMATE, AUTOMATE</strong></li>
+					   </ul>
+			</section>
+			<section>
+				<h2>So how do you write a shell script?</h2>
+				<ul>
+					<li class="fragment">Shell scripts generally have a "<b>.sh</b>" extension</li>
+					<li class='fragment'>They generally are given exceute permission</li>
+				</ul>	
+			</section>
+			<section>
+				<h2>The "shebang"</h2>
+					Most scripts always start with a shebang
+					<br><pre><code>#!/bin/bash</code></pre>
+					OR
+					<br><pre><code>#!/bin/sh</code></pre>
+			</section>
+			<section>
+				<h2>Our First Script</h2>
+					<pre><code>
+#!/bin/bash
+echo "Hello World \n"
+					</code></pre>
+			</section>
+			<section>
+				<h2>Variables</h2>
+				<ul>
+					<li class='fragment'>We can use variables in shell scripts without declaring them</li>
+					<li class='fragment'>Simple as saying x="Hello world"</li>
+					<li class='fragment'>To use the value use the $ symbol i.e.,<br>
+						<pre><code>
+#!/bin/bash
+x="Hello World!!"
+echo $x
+						</code></pre>
+					</li>
+					<li class='fragment'>We can also assign the output of commands to variables<center><br >x=$(ls) <br>or<br>x=`ls`<center></li>
+				</ul>
+ 			</section>
+			<section>
+				<h2>Keyboard Input</h2>
+				<h4>To get input from the keyboard, you use the read command. The read command takes input from the keyboard and assigns it to a variable.</h4>
+				<pre><code>
+#!/bin/bash
+
+echo -n "Enter some text > "
+read text
+echo "You entered: $text"
+				</code></pre>
+			</section>
+			<section>
+				<h2>A Simple Calculator</h2>
+				<pre><code>
+#!/bin/bash
+
+first_num=0
+second_num=0
+echo -n "Enter the first number --> "
+read first_num
+echo -n "Enter the second number -> "
+read second_num
+echo "first number + second number = $((first_num + second_num))"
+echo "first number - second number = $((first_num - second_num))"
+echo "first number * second number = $((first_num * second_num))"
+echo "first number / second number = $((first_num / second_num))"
+echo "first number % second number = $((first_num % second_num))"
+echo "first number raised to the"
+echo "power of the second number   = $((first_num ** second_num))"
+			</code></pre>
+			</section>
+			<section>
+				<h2>Flow Control</h2>
+					<h4>The shell provides several commands that we can use to control the flow of execution in our program. These include:</h4>
+					<ul>
+						<li>if
+						<li>exit
+						<li>for
+						<li>while
+				    		<li>until
+						<li>case
+						<li>break
+						<li>continue
+					</ul>			
+			</section>
+			<section>
+				<h2>IF</h2>
+				<pre><code>
+# First form
+
+if condition ; then
+    commands
+fi
+
+# Second form
+
+if condition ; then
+    commands
+else
+    commands
+fi
+</code></pre><pre><code>
+# Third form
+
+if condition ; then
+    commands
+elif condition ; then
+    commands
+fi
+				</code></pre>
+			</section>
+			<section>
+				<h2>The condition</h2>	
+					Syntax:
+				<pre><code>
+# First form
+
+test expression
+
+# Second form
+
+[ expression ]
+				</code></pre>
+			</section>
+			<section>
+				<h2>An example</h2>
+				<pre><code>
+#!/bin/bash
+
+number=1
+
+if [ $number = "1" ]; then
+    echo "Number equals 1"
+else
+    echo "Number does not equal 1"
+fi
+				</code></pre>
+			</section>
+			<section>
+				<h2>Case</h2>
+				Syntax : <pre><code>
+case word in
+    patterns ) statements ;;
+esac
+				</code></pre>
+				Example
+				<pre><code>
+#!/bin/bash
+echo -n "Enter a number between 1 and 3 inclusive > "
+read character
+case $character in
+    1 ) echo "You entered one."
+        ;;
+    2 ) echo "You entered two."
+        ;;
+    3 ) echo "You entered three."
+        ;;
+    * ) echo "You did not enter a number"
+        echo "between 1 and 3."
+esac
+			</code></pre>
+			</section>
+			<section>
+				<h2>While</h2>
+				<pre><code>
+#!/bin/bash
+
+number=0
+while [ $number -lt 10 ]; do
+    echo "Number = $number"
+    number=$((number + 1))
+done
+				</pre></code>	
+			</section>	
+			<section>
+				<h2>For</h2>
+				Syntax: <pre><code>
+for variable in words; do
+    statements
+done				</code></pre>
+				Example<pre><code>
+#!/bin/bash
+
+for i in `ls`; do
+    echo $i
+done
+				</code></pre>
+			</section>
+		</section>
+		<section>
+			<h2>Questions ?</h2>
+		</section>
+		<section>
+					
+			<h2>Thank You</h2>
+			This Web presentation was written using RevealJS
+		</section>
+		
+
+
+
+
+
+            </div>
+
+        </div>
+
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+
+         // Full list of configuration options available here:
+         // https://github.com/hakimel/reveal.js#configuration
+         Reveal.initialize({
+             controls: true,
+             progress: true,
+             history: true,
+             center: true,
+
+             theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+             transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+             // Optional libraries used to extend on reveal.js
+             dependencies: [
+                 { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                 { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                 { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                 { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                 { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                 { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+             ]
+         });
+
+        </script>
+
+    </body>
+
+</html>

@@ -1,0 +1,37 @@
+.float-left {
+    float: left;
+}
+.float-right {
+    float: right;
+}
+.clear {
+    clear: both;
+}
+.width-80 {
+    width: 80%;
+}
+table {
+    width: 100%;
+    border: 0;
+}
+tr {
+    padding: 5px;
+}
+td, th {
+    border-bottom: 1px solid;
+}
+th {
+    font-weight: bold;
+}
+.center td, .center th {
+    text-align: center;
+}
+h1.lowercase, h2.lowercase, h3.lowercase {
+    text-transform: lowercase;
+}
+span.uppercase {
+    text-transform: uppercase;
+}
+h1.normalcase, h2.normalcase, h3.normalcase {
+    text-transform: none;
+}
